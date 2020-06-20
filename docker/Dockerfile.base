@@ -1,0 +1,12 @@
+FROM debian:buster-slim
+
+RUN : \
+    && apt-get update -y \
+    && apt-get install -y --no-install-recommends curl jq ca-certificates python3-minimal python3-setuptools python3-pip \
+    && pip3 install wheel==0.34.2 \
+    && pip3 install jinja2-cli==0.7.0 \
+    && pip3 install PyYAML==5.3.1 \
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get clean \
+    && rm -rf /tmp/* \
+    && :
