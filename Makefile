@@ -20,6 +20,20 @@ release-base:
 	@docker push $(DOCKERHUB_USER)/base:v1.0
 
 ###################################################################################################
+# Utils
+###################################################################################################
+.PHONY: utils
+utils:
+	@docker build \
+		--tag $(DOCKERHUB_USER)/utils:v1.0 \
+		--file docker/Dockerfile.utils \
+		docker
+
+.PHONY: release-utils
+release-utils:
+	@docker push $(DOCKERHUB_USER)/utils:v1.0
+
+###################################################################################################
 # Java
 ###################################################################################################
 .PHONY: java
@@ -110,3 +124,4 @@ clean:
 	@docker rm $(shell docker ps -qa) || true
 	@docker rmi $(shell docker images -q $(DOCKERHUB_USER)/base) --force || true
 	@docker rmi $(shell docker images -q $(DOCKERHUB_USER)/java) --force || true
+	@docker rmi $(shell docker images -q $(DOCKERHUB_USER)/utils) --force || true
