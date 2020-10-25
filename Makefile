@@ -11,13 +11,13 @@ all: base java
 .PHONY: base
 base:
 	@docker build \
-		--tag $(DOCKERHUB_USER)/base:v1.0 \
+		--tag $(DOCKERHUB_USER)/base:v1.1 \
 		--file docker/Dockerfile.base \
 		docker
 
 .PHONY: release-base
 release-base:
-	@docker push $(DOCKERHUB_USER)/base:v1.0
+	@docker push $(DOCKERHUB_USER)/base:v1.1
 
 ###################################################################################################
 # Utils
