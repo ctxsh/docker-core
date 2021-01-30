@@ -1,6 +1,5 @@
 FROM ctxsh/base:v1.0
 
-
 RUN : \
     && apt-get update -y \
     && apt-get install -y --no-install-recommends telnet procps dnsutils iputils-ping \
