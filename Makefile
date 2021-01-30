@@ -1,6 +1,7 @@
 PREFIX := $(HOME)
 MAKE_PATH := $(dir $(realpath $(firstword $(MAKEFILE_LIST))))
 DOCKERHUB_USER ?= ctxsh
+VERSION := v1.2
 
 .PHONY: all
 all: base java
@@ -11,13 +12,13 @@ all: base java
 .PHONY: base
 base:
 	@docker build \
-		--tag $(DOCKERHUB_USER)/base:v1.1 \
+		--tag $(DOCKERHUB_USER)/base:$(VERSION) \
 		--file docker/Dockerfile.base \
 		docker
 
 .PHONY: release-base
 release-base:
-	@docker push $(DOCKERHUB_USER)/base:v1.1
+	@docker push $(DOCKERHUB_USER)/base:$(VERSION)
 
 ###################################################################################################
 # Utils
@@ -25,13 +26,13 @@ release-base:
 .PHONY: utils
 utils:
 	@docker build \
-		--tag $(DOCKERHUB_USER)/utils:v1.0 \
+		--tag $(DOCKERHUB_USER)/utils:$(VERSION) \
 		--file docker/Dockerfile.utils \
 		docker
 
 .PHONY: release-utils
 release-utils:
-	@docker push $(DOCKERHUB_USER)/utils:v1.0
+	@docker push $(DOCKERHUB_USER)/utils:$(VERSION)
 
 ###################################################################################################
 # Java
