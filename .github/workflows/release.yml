@@ -6,15 +6,12 @@ jobs:
   push_to_registry:
     name: Push ctxsh/base
     runs-on: ubuntu-latest
-    steps:
-      jobs:
-  multi-builders:
-    runs-on: ubuntu-latest
+
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
 
-      - name: Push ctxsh/core
+      - name: Push image to DockerHub
         uses: docker/build-push-action@v2.2.2
         with:
           context: .
@@ -23,5 +20,4 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: ctxsh/core
           tag_with_ref: true
-          tags:
-            - ctxsh/core:latest
+          tags: ctxsh/core:latest
